@@ -16,7 +16,7 @@ npm install
 npm run dev
 ```
 
-The frontend uses `http://localhost:5173` and the backend uses `http://localhost:5000`.
+The frontend uses `http://localhost:5173` or `http://localhost:5177 and the backend uses `http://localhost:5000`.
 
 ## 2. Make a user admin
 
