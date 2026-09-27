@@ -1,8 +1,8 @@
 import express from "express";
 import cors from "cors";
 import dotenv from "dotenv";
-import connectDB from "./config/db.js";
 
+import connectDB from "./config/db.js";
 import authRoutes from "./routes/auth.js";
 import bookingRoutes from "./routes/bookings.js";
 import contactRoutes from "./routes/contact.js";
@@ -17,15 +17,14 @@ const app = express();
 const allowedOrigins = [
   "http://localhost:5173",
   "http://localhost:5177",
-   "https://allo-tuktok.vercel.app",
-  process.env.CLIENT_URL
+  "https://allo-tuktok.vercel.app",
+  process.env.CLIENT_URL,
 ].filter(Boolean);
 
 app.use(
   cors({
     origin: (origin, callback) => {
       // Allow requests without an origin
-      // (Postman, server-to-server, etc.)
       if (!origin) {
         return callback(null, true);
       }
@@ -36,16 +35,18 @@ app.use(
 
       return callback(new Error("Not allowed by CORS"));
     },
-    credentials: true
+    credentials: true,
   })
 );
 
 app.use(express.json());
 
+// Test route
 app.get("/", (req, res) => {
   res.json({ message: "Allo TukTuk API is running" });
 });
 
+// API routes
 app.use("/api/auth", authRoutes);
 app.use("/api/bookings", bookingRoutes);
 app.use("/api/contact", contactRoutes);
